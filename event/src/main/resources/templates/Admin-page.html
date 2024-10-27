@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Event Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #4f9bc7;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            flex: 1 1 100%;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            margin-right: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+            color: white;
+            text-align: center;
+            flex: 2;
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .topnav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 1em;
+        }
+
+        /* Main Content Area */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            padding-top: 70px; /* Space for fixed header */
+            padding-bottom: 70px; /* Space for fixed footer */
+        }
+
+        .admin-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .admin-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-section input[type="text"],
+        .admin-section input[type="email"],
+        .admin-section input[type="number"],
+        .admin-section select,
+        .admin-section input[type="date"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .admin-section button {
+            padding: 10px;
+            background-color: #4f9bc7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .admin-section button:hover {
+            background-color: #3c7b99;
+        }
+
+        .admin-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .admin-section table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .remove-button {
+            color: white;
+            background-color: red;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .update-button {
+            background-color: #ffc107;
+            color: black;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #4f9bc7, #4f9bc7);
+            color: white;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.jnport.gov.in/uploads/home_page/1/header_logo1/1700558593.png" alt="Awesome Logo" class="logo" />
+                <h1>WELCOME TO JNPA EVENTS - Admin Dashboard</h1>
+            </div>
+            <div class="topnav">
+                <a class="active" href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="https://www.jnport.gov.in/page/contact-us/N3BzcmRpa0gzQU9sRkNiMEwzc0E1Zz09" target="_blank">Contact</a>
+                <a href="#" onclick="openAddAdminForm()">Add Admin</a> <!-- New link for Add Admin -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-container">
+
+        <!-- Event Management Section -->
+        <div class="admin-section">
+            <h2>Manage Events</h2>
+            <form action="/admin/events/add" method="POST">
+                <input type="text" name="event_name" placeholder="Event Name" required>
+                <input type="text" name="event_location" placeholder="Event Location" required>
+                <input type="number" name="event_capacity" placeholder="Capacity" required>
+                <label for="event_start_date">Event Start Date:</label>
+                <input type="date" name="event_start_date" id="event_start_date" required>
+                <label for="event_end_date">Event End Date:</label>
+                <input type="date" name="event_end_date" id="event_end_date" required>
+                <button type="submit">Add Event</button>
+            </form>
+
+            <h3>Current Events</h3>
+            <table>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Location</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Capacity</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- Populate this dynamically with server-side events -->
+                <tr>
+                    <td>Sample Event 1</td>
+                    <td>Mumbai</td>
+                    <td>2024-10-28</td>
+                    <td>2024-10-30</td>
+                    <td>100</td>
+                    <td>
+                        <button class="update-button" onclick="openUpdateEventForm()">Update</button>
+                        <button class="remove-button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sample Event 2</td>
+                    <td>Delhi</td>
+                    <td>2024-11-15</td>
+                    <td>2024-11-17</td>
+                    <td>200</td>
+                    <td>
+                        <button class="update-button" onclick="openUpdateEventForm()">Update</button>
+                        <button class="remove-button">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Registered Users Section -->
+        <div class="admin-section">
+            <h2>Registered Users</h2>
+            <table>
+                <tr>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- Populate this dynamically with server-side users -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                    <td>
+                        <button class="update-button" onclick="openUpdateUserForm()">Update</button>
+                        <button class="remove-button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                    <td>
+                        <button class="update-button" onclick="openUpdateUserForm()">Update</button>
+                        <button class="remove-button">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Admin Modal -->
+<div id="addAdminModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddAdminForm()">&times;</span>
+        <h2>Add Admin</h2>
+        <form action="/admin/add" method="POST">
+            <input type="text" name="username" placeholder="Username" required> <!-- New field for Username -->
+            <input type="email" name="admin_email" placeholder="Admin Email" required>
+            <input type="password" name="admin_password" placeholder="Admin Password" required>
+            <input type="text" name="contact" placeholder="Contact Number" maxlength="15"> <!-- New field for Contact -->
+            <button type="submit">Add Admin</button>
+        </form>
+    </div>
+</div>
+
+
+    <!-- Update Event Modal -->
+    <div id="updateEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUpdateEventForm()">&times;</span>
+            <h2>Update Event</h2>
+            <form action="/admin/events/update" method="POST">
+                <input type="text" name="event_name" placeholder="Event Name" required>
+                <input type="text" name="event_location" placeholder="Event Location" required>
+                <input type="number" name="event_capacity" placeholder="Capacity" required>
+                <label for="event_start_date">Event Start Date:</label>
+                <input type="date" name="event_start_date" id="event_start_date" required>
+                <label for="event_end_date">Event End Date:</label>
+                <input type="date" name="event_end_date" id="event_end_date" required>
+                <button type="submit">Update Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Update User Modal -->
+    <div id="updateUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUpdateUserForm()">&times;</span>
+            <h2>Update User</h2>
+            <form action="/admin/users/update" method="POST">
+                <input type="text" name="user_name" placeholder="User Name" required>
+                <input type="email" name="user_email" placeholder="User Email" required>
+                <button type="submit">Update User</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 JNPA Events. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function openAddAdminForm() {
+            document.getElementById("addAdminModal").style.display = "block";
+        }
+
+        function closeAddAdminForm() {
+            document.getElementById("addAdminModal").style.display = "none";
+        }
+
+        function openUpdateEventForm() {
+            document.getElementById("updateEventModal").style.display = "block";
+        }
+
+        function closeUpdateEventForm() {
+            document.getElementById("updateEventModal").style.display = "none";
+        }
+
+        function openUpdateUserForm() {
+            document.getElementById("updateUserModal").style.display = "block";
+        }
+
+        function closeUpdateUserForm() {
+            document.getElementById("updateUserModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

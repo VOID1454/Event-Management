@@ -1,0 +1,146 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef;
+}
+
+header {
+    position: relative;
+    background-color: #4f9bc7;
+    color: white;
+    padding: 2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Updated container with flexbox */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Flexbox for header content */
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo styling */
+.logo {
+    height: 80px;
+    width: auto;
+    margin-right: 20px; /* Space between logo and heading */
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-align: center; 
+    margin-left: 400px;
+}
+
+.topnav {
+    display: flex;
+    align-items: center;
+}
+
+.topnav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.topnav input[type="text"] {
+    padding: 5px;
+}
+
+/* Main Content Area */
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+/* Upcoming Events Container */
+.events-container {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.events-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Scrollable Events List Container */
+.scrollable-events {
+    position: absolute;
+    top: 50px; /* Start below the header */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.events-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Right Side Styling */
+.right-side {
+    margin-left: 20px;
+    width: 400px; /* Adjust width */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.slideshow-container {
+    position: relative;
+    height: 250px; /* Set a fixed height */
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4f9bc7;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

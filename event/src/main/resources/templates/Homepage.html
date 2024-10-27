@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Event Booking System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column; /* Column layout */
+            min-height: 100vh; /* Ensure full height */
+        }
+
+        header {
+            position: fixed; /* Fixed to the top */
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #4f9bc7;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            flex: 1 1 100%; /* Allow it to take full width */
+        }
+
+        .logo {
+            height: 60px; /* Adjusted logo size for better scaling */
+            width: auto;
+            margin-right: 20px;
+        }
+
+        h1 {
+            font-size: 2em; /* Relative font size */
+            margin: 0;
+            color: white;
+            text-align: center;
+            flex: 2; /* Allow h1 to take more space */
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            flex: 1; /* Allow nav to take up remaining space */
+            justify-content: flex-end; /* Align to the right */
+            margin-top: 10px; /* Spacing for mobile view */
+        }
+
+        .topnav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 1em; /* Relative font size */
+        }
+
+        .topnav input[type="text"] {
+            padding: 8px;
+            font-size: 0.9em; /* Responsive input size */
+        }
+
+        /* Main Content Area */
+        .main-container {
+            flex: 1; /* Allow it to grow and fill space */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            padding-top: 70px; /* Space for fixed header */
+            padding-bottom: 70px; /* Space for fixed footer */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Slideshow Container */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Responsive height */
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px; /* Add space below slideshow */
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Upcoming Events Container */
+        .events-container {
+            display: grid; /* Use grid layout */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive columns */
+            grid-gap: 15px; /* Space between grid items */
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            max-height: 400px; /* Set max height for the container */
+            overflow-y: auto; /* Allow scrolling for overflow */
+        }
+
+        .event-card {
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Pointer on hover */
+            transition: transform 0.2s; /* Scale effect */
+            display: flex; /* Flexbox for inner content */
+            flex-direction: column; /* Stack content */
+            justify-content: center; /* Center content */
+            align-items: center; /* Center content */
+        }
+
+        .event-card:hover {
+            transform: scale(1.05); /* Slight scale on hover */
+        }
+
+        footer {
+            position: fixed; /* Fixed to the bottom */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #4f9bc7, #4f9bc7);
+            color: white;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                margin-left: 0;
+                font-size: 1.8em; /* Smaller font size for mobile */
+            }
+
+            .events-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for smaller screens */
+            }
+
+            .event-card {
+                min-width: 150px; /* Adjusted for smaller screens */
+            }
+
+            .topnav {
+                flex-direction: column; /* Stack items in top nav */
+                align-items: flex-start; /* Align to start */
+                margin-top: 0; /* Reset margin for stacking */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 50px; /* Smaller logo on very small screens */
+            }
+
+            .topnav a {
+                margin-right: 10px; /* Adjust spacing */
+                font-size: 0.9em; /* Smaller font */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.jnport.gov.in/uploads/home_page/1/header_logo1/1700558593.png"
+                    alt="Awesome Logo" class="logo" />
+                <h1>WELCOME TO JNPA EVENTS</h1>
+            </div>
+            <div class="topnav">
+                <a class="active" href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <input type="text" id="eventFilter" placeholder="Filter events..." oninput="filterEvents()">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-container">
+        <!-- Right-Side Content (Image Slideshow) -->
+        <div class="slideshow-container" id="slideshowContainer">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="https://morungexpress.com/uploads/2024/10/13706272_1728057217_IMG20241004113015.jpg" alt="Event 1 Banner">
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://morungexpress.com/uploads/2024/10/89351957_1728057177_IMG20241004124658.webp" alt="Event 2 Banner">
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://morungexpress.com/uploads/2024/10/21605218_1728057197_IMG20241004131551.webp" alt="Event 3 Banner">
+            </div>
+        </div>
+
+        <!-- Upcoming Events Container -->
+        <div class="events-container" id="eventsContainer">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <ul>
+            <p>
+                <a href="https://www.instagram.com/jnpaport/" target="_blank" aria-label="Instagram">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/instagram.png" alt="Instagram" width="30" height="30">
+                </a>
+                <a href="https://www.facebook.com/JNPORT/" target="_blank" aria-label="Facebook">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/facebook.png" alt="Facebook" width="30" height="30">
+                </a>
+                <a href="https://www.linkedin.com/company/jnpt" target="_blank" aria-label="LinkedIn">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/linkedin.png" alt="LinkedIn" width="30" height="30">
+                </a>
+                <a href="https://x.com/JNPort" target="_blank" aria-label="Twitter">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/twitter3.png" alt="Twitter" width="30" height="30">
+                </a>
+            </p>
+        </ul>
+    </footer>
+
+    <script>
+        // Add slideshow functionality here
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => showSlide(currentSlide + 1), 3000); // Change slide every 3 seconds
+
+        // Function to filter events
+        function filterEvents() {
+            const input = document.getElementById('eventFilter').value.toLowerCase();
+            const events = document.querySelectorAll('.event-card');
+            events.forEach(event => {
+                const text = event.textContent.toLowerCase();
+                event.style.display = text.includes(input) ? 'block' : 'none';
+            });
+        }
+
+        // Example events for the container
+        const eventsContainer = document.getElementById('eventsContainer');
+        for (let i = 1; i <= 8; i++) {
+            const eventCard = document.createElement('div');
+            eventCard.classList.add('event-card');
+            eventCard.innerHTML = `<h2>Event ${i}</h2><p>Description for event ${i}.</p>`;
+            eventsContainer.appendChild(eventCard);
+        }
+    </script>
+</body>
+
+</html>

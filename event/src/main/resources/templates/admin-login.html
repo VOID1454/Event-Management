@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Event Booking System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #4f9bc7;
+            color: white;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            flex: 1 1 100%;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            margin-right: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+            color: white;
+            text-align: center;
+            flex: 2;
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .topnav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 1em;
+        }
+
+        /* Main Content Area */
+        .main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 70px; /* Space for fixed header */
+    padding-bottom: 70px; /* Space for fixed footer */
+    align-items: center; /* Center alignment */
+    justify-content: center; /* Center vertically */
+}
+
+        .login-form {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4f9bc7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #3c7b99;
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #4f9bc7, #4f9bc7);
+            color: white;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <!-- Google reCAPTCHA API -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="https://www.jnport.gov.in/uploads/home_page/1/header_logo1/1700558593.png" alt="Awesome Logo" class="logo" />
+                <h1>WELCOME TO JNPA EVENTS</h1>
+            </div>
+            <div class="topnav">
+                <a class="active" href="#home">Home</a>
+                <a href="https://www.jnport.gov.in/page/welcome-to-jnpa/TFE5ZFErYlJLRTExcHdrbDVHV2x5QT09">About</a>
+                <a href="https://www.jnport.gov.in/page/contact-us/N3BzcmRpa0gzQU9sRkNiMEwzc0E1Zz09" target="_blank">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-container">
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <form action="/admin/login" method="POST"> <!-- Replace with your login URL -->
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div> <!-- Add your Site Key here -->
+                <button type="submit">Login</button>
+            </form>
+            <a class="forgot-password" href="#forgot-password">Forgot Password?</a>
+        </div>
+    </div>
+
+    <footer>
+        <ul>
+            <p>
+                <a href="https://www.instagram.com/jnpaport/" target="_blank" aria-label="Instagram">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/instagram.png" alt="Instagram" width="30" height="30">
+                </a>
+                <a href="https://www.facebook.com/JNPORT/" target="_blank" aria-label="Facebook">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/facebook.png" alt="Facebook" width="30" height="30">
+                </a>
+                <a href="https://www.linkedin.com/company/jnpt" target="_blank" aria-label="LinkedIn">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/linkedin.png" alt="LinkedIn" width="30" height="30">
+                </a>
+                <a href="https://x.com/JNPort" target="_blank" aria-label="Twitter">
+                    <img src="https://www.jnport.gov.in/front/assets/images/social_icons/twitter3.png" alt="Twitter" width="30" height="30">
+                </a>
+            </p>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
